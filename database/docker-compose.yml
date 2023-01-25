@@ -3,11 +3,6 @@ services:
     postgres:
       image: postgres
       container_name: postgres
-      healthcheck:
-        test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
-        timeout: 45s
-        interval: 10s
-        retries: 10
       restart: always
       env_file:
         - .env
@@ -18,10 +13,7 @@ services:
       ports:
         - '5438:5432'
       volumes: 
-        - ./db:/docker-entrypoint-initdb.d/
-        # - ./postgres-data:/var/lib/postgresql/data
-        # - ./sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
-        # - ./sql/create_teste.sql:/docker-entrypoint-initdb.d/create_teste.sql
+        - ./sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
       networks:
         - database
 
