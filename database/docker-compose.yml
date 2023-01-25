@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+    postgres:
+      image: postgres
+      container_name: postgres
+      healthcheck:
+        test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+        timeout: 45s
+        interval: 10s
+        retries: 10
+      restart: always
+      env_file:
+        - .env
+      logging:
+        options:
+          max-size: 10m
+          max-file: "3"
+      ports:
+        - '5438:5432'
+      volumes: 
+        - ./db:/docker-entrypoint-initdb.d/
+        # - ./postgres-data:/var/lib/postgresql/data
+        # - ./sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
+        # - ./sql/create_teste.sql:/docker-entrypoint-initdb.d/create_teste.sql
+      networks:
+        - database
+
+    pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin
+      env_file:
+        - .env
+      ports:
+        - "16543:80"
+      depends_on:
+        - postgres
+      networks:
+        - database
+
+networks: 
+  database:
+    driver: bridge
