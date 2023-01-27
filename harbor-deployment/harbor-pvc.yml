@@ -1,0 +1,113 @@
+#----------------------------------
+# PVC harbor-registry
+#----------------------------------
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: harbor-registry
+  namespace: harbor
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: harbor-registry
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+#----------------------------------
+# PVC harbor-jobservice
+#----------------------------------
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: harbor-jobservice
+  namespace: harbor
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: harbor-jobservice
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+#----------------------------------
+# PVC harbor-jobservice-scandata
+#----------------------------------
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: harbor-jobservice-scandata
+  namespace: harbor
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: harbor-jobservice-scandata
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+#----------------------------------
+# PVC harbor-chartmuseum
+#----------------------------------
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: harbor-chartmuseum
+  namespace: harbor
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: harbor-chartmuseum
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+#----------------------------------
+# PVC data-harbor-trivy-0
+#----------------------------------
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-harbor-trivy-0
+  namespace: harbor
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: data-harbor-trivy-0
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+#----------------------------------
+# PVC data-harbor-redis-0
+#----------------------------------
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-harbor-redis-0
+  namespace: harbor
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: data-harbor-redis-0
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem

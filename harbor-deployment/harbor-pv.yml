@@ -1,20 +1,8 @@
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: harbor-registry
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: harbor-registry
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
 
+#----------------------------------
+# Volume harbor-registry
+#----------------------------------
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -22,37 +10,24 @@ metadata:
 spec:
   capacity:
     storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
   accessModes:
     - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: harbor-registry
-    apiVersion: v1
   persistentVolumeReclaimPolicy: Retain
   storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
-# harbor-jobservice
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: harbor-jobservice
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: harbor-jobservice
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
+  mountOptions:
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: unique-volumeid  
+    volumeAttributes:
+      server: 192.168.1.10
+      share: /
 
+#----------------------------------
+# Volume harbor-jobservice
+#----------------------------------
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -60,39 +35,25 @@ metadata:
 spec:
   capacity:
     storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
   accessModes:
     - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: harbor-jobservice
-    apiVersion: v1
   persistentVolumeReclaimPolicy: Retain
   storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
+  mountOptions:
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: unique-volumeid  
+    volumeAttributes:
+      server: 192.168.1.10
+      share: /
 
 
-  # harbor-jobservice-scandata
+#----------------------------------
+# Volume harbor-jobservice-scandata
+#----------------------------------
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: harbor-jobservice-scandata
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: harbor-jobservice-scandata
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -100,38 +61,24 @@ metadata:
 spec:
   capacity:
     storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
   accessModes:
     - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: harbor-jobservice-scandata
-    apiVersion: v1
   persistentVolumeReclaimPolicy: Retain
   storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
+  mountOptions:
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: unique-volumeid  
+    volumeAttributes:
+      server: 192.168.1.10
+      share: /
 
-  # harbor-chartmuseum
+#----------------------------------
+# Volume harbor-chartmuseum
+#----------------------------------
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: harbor-chartmuseum
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: harbor-chartmuseum
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -139,40 +86,24 @@ metadata:
 spec:
   capacity:
     storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
   accessModes:
     - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: harbor-chartmuseum
-    apiVersion: v1
   persistentVolumeReclaimPolicy: Retain
   storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
+  mountOptions:
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: unique-volumeid  
+    volumeAttributes:
+      server: 192.168.1.10
+      share: /
 
-
-
-  # data-harbor-trivy-0
+#----------------------------------
+# Volume data-harbor-trivy-0
+#----------------------------------
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: data-harbor-trivy-0
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: data-harbor-trivy-0
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -180,250 +111,25 @@ metadata:
 spec:
   capacity:
     storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
   accessModes:
     - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: data-harbor-trivy-0
-    apiVersion: v1
   persistentVolumeReclaimPolicy: Retain
   storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
+  mountOptions:
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: unique-volumeid  
+    volumeAttributes:
+      server: 192.168.1.10
+      share: /
 
 
-  # data-harbor-redis-0
+#----------------------------------
+# Volume data-harbor-redis-0
+#----------------------------------
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: data-harbor-redis-0
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: data-harbor-redis-0
-  storageClassName: ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: harbor-registry
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: harbor-registry
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: harbor-registry
-spec:
-  capacity:
-    storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
-  accessModes:
-    - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: harbor-registry
-    apiVersion: v1
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
-# harbor-jobservice
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: harbor-jobservice
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: harbor-jobservice
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: harbor-jobservice
-spec:
-  capacity:
-    storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
-  accessModes:
-    - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: harbor-jobservice
-    apiVersion: v1
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
-
-
-  # harbor-jobservice-scandata
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: harbor-jobservice-scandata
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: harbor-jobservice-scandata
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: harbor-jobservice-scandata
-spec:
-  capacity:
-    storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
-  accessModes:
-    - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: harbor-jobservice-scandata
-    apiVersion: v1
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
-
-  # harbor-chartmuseum
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: harbor-chartmuseum
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: harbor-chartmuseum
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: harbor-chartmuseum
-spec:
-  capacity:
-    storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
-  accessModes:
-    - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: harbor-chartmuseum
-    apiVersion: v1
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
-
-
-
-  # data-harbor-trivy-0
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: data-harbor-trivy-0
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: data-harbor-trivy-0
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: data-harbor-trivy-0
-spec:
-  capacity:
-    storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
-  accessModes:
-    - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: data-harbor-trivy-0
-    apiVersion: v1
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
-
-
-  # data-harbor-redis-0
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: data-harbor-redis-0
-  namespace: harbor
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  volumeName: data-harbor-redis-0
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
----
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -431,35 +137,16 @@ metadata:
 spec:
   capacity:
     storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
   accessModes:
     - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: data-harbor-redis-0
-    apiVersion: v1
   persistentVolumeReclaimPolicy: Retain
   storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
-me
-metadata:
-  name: data-harbor-redis-0
-spec:
-  capacity:
-    storage: 6Gi
-  nfs:
-    server: ip do servidor nfs
-    path: /
-  accessModes:
-    - ReadWriteMany
-  claimRef:
-    kind: PersistentVolumeClaim
-    namespace: harbor
-    name: data-harbor-redis-0
-    apiVersion: v1
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: harbor-nfs-sc
-  volumeMode: Filesystem
+  mountOptions:
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: unique-volumeid  
+    volumeAttributes:
+      server: 192.168.1.10
+      share: /
