@@ -1,0 +1,138 @@
+---
+#registry
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: harbor-registry
+spec:
+  capacity:
+    storage: 6Gi
+  nfs:
+    server: 10.0.2.2
+    path: /
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: harbor
+    name: harbor-registry
+    apiVersion: v1
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+# harbor-jobservice
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: harbor-jobservice
+spec:
+  capacity:
+    storage: 6Gi
+  nfs:
+    server: 10.0.2.2
+    path: /
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: harbor
+    name: harbor-jobservice
+    apiVersion: v1
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+  # harbor-jobservice-scandata
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: harbor-jobservice-scandata
+spec:
+  capacity:
+    storage: 6Gi
+  nfs:
+    server: 10.0.2.2
+    path: /
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: harbor
+    name: harbor-jobservice-scandata
+    apiVersion: v1
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+  # harbor-chartmuseum
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: harbor-chartmuseum
+spec:
+  capacity:
+    storage: 6Gi
+  nfs:
+    server: 10.0.2.2
+    path: /
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: harbor
+    name: harbor-chartmuseum
+    apiVersion: v1
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+  # data-harbor-trivy-0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-harbor-trivy-0
+spec:
+  capacity:
+    storage: 6Gi
+  nfs:
+    server: 10.0.2.2
+    path: /
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: harbor
+    name: data-harbor-trivy-0
+    apiVersion: v1
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem
+
+
+  # data-harbor-redis-0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-harbor-redis-0
+spec:
+  capacity:
+    storage: 6Gi
+  nfs:
+    server: 10.0.2.2
+    path: /
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: harbor
+    name: data-harbor-redis-0
+    apiVersion: v1
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: harbor-nfs-sc
+  volumeMode: Filesystem

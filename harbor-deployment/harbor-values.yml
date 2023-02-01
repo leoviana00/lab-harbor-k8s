@@ -38,20 +38,20 @@ externalURL: https://harbor.lab.k8s.io
 
 
 internalTLS:
-  enabled: false
+  enabled: true
 persistence:
   enabled: true
   resourcePolicy: ""
   persistentVolumeClaim:
     registry:
-      existingClaim: "harbor-registry"
+      existingClaim: ""
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteMany
       size: 5Gi
       annotations: {}
     chartmuseum:
-      existingClaim: "harbor-chartmuseum"
+      existingClaim: ""
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteMany
@@ -59,28 +59,28 @@ persistence:
       annotations: {}
     jobservice:
       jobLog:
-        existingClaim: "harbor-jobservice"
+        existingClaim: ""
         storageClass: "harbor-nfs-sc"
         subPath: ""
         accessMode: ReadWriteMany
         size: 1Gi
         annotations: {}
       scanDataExports:
-        existingClaim: "harbor-jobservice-scandata"
+        existingClaim: ""
         storageClass: "harbor-nfs-sc"
         subPath: ""
         accessMode: ReadWriteMany
         size: 1Gi
         annotations: {}
     redis:
-      existingClaim: "data-harbor-redis-0"
+      existingClaim: ""
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteMany
       size: 1Gi
       annotations: {}
     trivy:
-      existingClaim: "data-harbor-trivy-0"
+      existingClaim: ""
       storageClass: "harbor-nfs-sc"
       subPath: ""
       accessMode: ReadWriteMany
@@ -92,7 +92,7 @@ harborAdminPassword: "Harbor12345"
 database:
   type: external
   external:
-    host: "192.168.1.10"
+    host: "10.0.2.2"
     port: "5438"
     username: "root"
     password: "password"

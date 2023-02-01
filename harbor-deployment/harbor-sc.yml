@@ -4,7 +4,7 @@ metadata:
   name: harbor-nfs-sc
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: 192.168.1.10
+  server: 10.0.2.206
   share: /
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
