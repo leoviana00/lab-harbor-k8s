@@ -7,7 +7,7 @@
 1. Logar no `control plane`
 
 ```console
-vagrant ssh k8s-control
+vagrant ssh k8s-master
 ```
 
 2. Copiar o conteúdo do `admin.conf`
