@@ -5,6 +5,8 @@
 !keys/**/*
 !src/**/*
 !images
+!lens
+!lens/**/*
 !images/**/*
 !LICENSE
 !Makefile
