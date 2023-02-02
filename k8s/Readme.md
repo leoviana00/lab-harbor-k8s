@@ -1,4 +1,4 @@
-<h1 align="center">Setup Kubernetes </h1>
+<h1 align="center">Setup Kubernetes v1.25.6</h1>
 
 <p align="center">
   <img alt="Ansible" src="https://img.shields.io/static/v1?label=K8S&message=Ansible&color=8257E5&labelColor=000000"  />
