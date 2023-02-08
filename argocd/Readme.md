@@ -1,9 +1,9 @@
 ## Quick Started
 
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+- kubectl create namespace argocd
+- kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-## Patch (Add label Istio)
+## Patch (Caso add label ao istio)
 
 - argocd-redis.networkpolicy.patch.yaml
 
